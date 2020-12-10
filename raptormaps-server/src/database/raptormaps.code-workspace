@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "..\\.."
+		},
+		{
+			"path": "..\\..\\..\\raptormaps-client"
+		}
+	],
+	"settings": {
+		"typescript.tsdk": "raptormaps-server\\node_modules\\typescript\\lib"
+	}
+}
