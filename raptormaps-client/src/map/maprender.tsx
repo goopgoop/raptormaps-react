@@ -28,11 +28,10 @@ export default function MapRender() {
     const [markers, setMarkers] = useState<Markers>({});
     const [requestingData, setRequestingData] = useState<boolean>(false);
     const [[errorType, errorMessage], setError] = useState(['', '']);
-    const [lastTimeUpdated, setLastTimeUpdated] = useState<number>(0);
 
    let mapContainer : HTMLElement | string = "";
    let intervalId : NodeJS.Timeout | null;
-   
+   let lastTimeUpdated : number = 0;
 
    useEffect(() => {
         mapboxgl.accessToken = "pk.eyJ1IjoiZ29vcGl0eWdvb3Bnb29wIiwiYSI6ImNraWRranFtcDFkYjkycG1ndjg3aGZzZGQifQ.xO-MMAxkMbT-o68hcU1xag";
@@ -60,11 +59,11 @@ export default function MapRender() {
    }, [settingsOpen, map, errorMessage]);
 
 
+
    async function requestUpdatedData() {
         setRequestingData(true);
         try {
             const getData = await API.getInstance().getTechnicians(solarFarmId);
-            console.log(getData);
             if(!getData || !getData["features"])
             {
                 setError(['get', 'No data found']);
@@ -75,11 +74,10 @@ export default function MapRender() {
             
             const technicians = getData["features"];
             const currentTime = technicians.length == 0 ? lastTimeUpdated : technicians[0]["properties"]["tsecs"];
-            console.log('technicians legnth: ' + technicians.length + " last technicians lenth: " + lastGetTechnicians.length + " current time: " + currentTime + " kast tuneL " + lastTimeUpdated)
             if(technicians.length === lastGetTechnicians.length && currentTime === lastTimeUpdated) {
                 return;
             }
-            setLastTimeUpdated(currentTime);
+            lastTimeUpdated = currentTime;
             addMarkers(technicians);
             checkForNotifications(technicians);
         }
@@ -170,7 +168,6 @@ export default function MapRender() {
         setSettingsOpen(false);
         if(settings.changed) {
             setSolarFarmId(settings.solarFarmId);
-            requestUpdatedData();
         }
     }
 
