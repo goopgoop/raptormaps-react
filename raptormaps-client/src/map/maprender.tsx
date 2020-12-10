@@ -196,7 +196,7 @@ export default function MapRender() {
         <div ref={el => mapContainer = el || ''} className="mapContainer" />
         <div style = {{marginTop: '20px', marginLeft: '20px'}}>
                 <Grid container spacing = {1}>
-                    <Grid item xs={1}>
+                    <Grid item>
                         <Button onClick={() => { setSettingsOpen(true); }} startIcon={<SettingsIcon/>} variant="contained" color="primary">
                         Settings
                         </Button>
