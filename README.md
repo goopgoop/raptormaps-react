@@ -16,6 +16,8 @@ There is a randomize positions button which randomizes the positions of the tech
 
 On the server side, I used TypeGraphQL and typegoose for the storage, reading, and writing of the data. I used GraphQL mainly because I wanted to be able to switch databases at anytime without requiring too much change in the logic. GraphQL is perfect for this, and, in fact, the switching between "databases" is shown in the program. By default, the in memory database is enabled which loads the sample file provided into memory and performs operations on it. You can comment out that import statement and put in the other import statement to read/write from a mongodb database instead (using typegoose). 
 
+NOTE: if GraphQL was not a requirement or is too complicated for this prompt. It is relativley trivial to take it out and use just normal querying instead. To do this, I'd just directly call the resolver classes and process their return data.
+
 On the client side, I used TypeScript and React for the main code. I also used the material ui package to show the buttons and the modal in the settings. I also used a react notification package for displaying the notifications in a nice way. For the map, I used mapbox GL. 
 
 # What decisions did I make? Why?
