@@ -66,7 +66,7 @@ export function Settings({isOpen, currentTechnicians, solarFarmId, onSettingsCha
             return <Typography gutterBottom> No Technicians </Typography>;
         return technicians.map((item, index) => {
             return (
-                <div key={index} style={{marginBottom: '20px'}}>
+                <div key={item.name} style={{marginBottom: '20px'}}>
                     <Grid container spacing={3}>
                         <Grid item>
                             <TextField id={`item-${index}-name`} label={"Technician " + (index + 1)} value={item.name} onChange={handleChangedTechnician} required></TextField>

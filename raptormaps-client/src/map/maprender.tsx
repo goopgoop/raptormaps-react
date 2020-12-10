@@ -116,7 +116,7 @@ export default function MapRender() {
     
             bounds.extend([coordinates[0], coordinates[1]]);
     
-            const newTech : Technician = {name: name, bearing: bearing, coordinates: coordinates};
+            const newTech : Technician = {name: name, bearing: bearing, coordinates: coordinates };
             lastGetTechnicians.push(newTech);
         }
 
