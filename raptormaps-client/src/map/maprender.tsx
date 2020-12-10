@@ -1,5 +1,5 @@
 import mapboxgl from 'mapbox-gl';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import API from '../api';
 import Utils from './utils';
 import {store} from 'react-notifications-component';
@@ -28,15 +28,15 @@ export default function MapRender() {
     const [markers, setMarkers] = useState<Markers>({});
     const [requestingData, setRequestingData] = useState<boolean>(false);
     const [[errorType, errorMessage], setError] = useState(['', '']);
-
-   let mapContainer : HTMLElement | string = "";
+    const mapContainer  = useRef();
+    
    let intervalId : NodeJS.Timeout | null;
    let lastTimeUpdated : number = 0;
 
    useEffect(() => {
         mapboxgl.accessToken = "pk.eyJ1IjoiZ29vcGl0eWdvb3Bnb29wIiwiYSI6ImNraWRranFtcDFkYjkycG1ndjg3aGZzZGQifQ.xO-MMAxkMbT-o68hcU1xag";
         setMap(new mapboxgl.Map({
-            container: mapContainer,
+            container: mapContainer.current,
             style: 'mapbox://styles/mapbox/streets-v11',
             center: [-115.606391900599817, 32.673693943392962],
             zoom: 9
@@ -193,10 +193,10 @@ export default function MapRender() {
        {
            renderError()
        }
-        <div ref={el => mapContainer = el || ''} className="mapContainer" />
+        <div ref={mapContainer} className="mapContainer" />
         <div style = {{marginTop: '20px', marginLeft: '20px'}}>
                 <Grid container spacing = {1}>
-                    <Grid item>
+                    <Grid item >
                         <Button onClick={() => { setSettingsOpen(true); }} startIcon={<SettingsIcon/>} variant="contained" color="primary">
                         Settings
                         </Button>
