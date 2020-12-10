@@ -12,6 +12,8 @@ There is a settings tab where you can change the technician names and current po
 
 There is a randomize positions button which randomizes the positions of the technicians. It will send to the server the new random positions but wont pull instantly. So, the update on the screen will show after some delay time. This is done on purpose to simulate the technicians moving in real life. 
 
+NOTE: There is currently no check if two technician names aren't the same. In reality, on state update should check if the current technician name is equal to any other and if it is display a warning.
+
 # Technologies Used
 
 On the server side, I used TypeGraphQL and typegoose for the storage, reading, and writing of the data. I used GraphQL mainly because I wanted to be able to switch databases at anytime without requiring too much change in the logic. GraphQL is perfect for this, and, in fact, the switching between "databases" is shown in the program. By default, the in memory database is enabled which loads the sample file provided into memory and performs operations on it. You can comment out that import statement and put in the other import statement to read/write from a mongodb database instead (using typegoose). 
