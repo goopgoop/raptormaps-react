@@ -64,9 +64,10 @@ export function Settings({isOpen, currentTechnicians, solarFarmId, onSettingsCha
     const renderTechnicians = () => {
         if(technicians.length == 0)
             return <Typography gutterBottom> No Technicians </Typography>;
+        //NOTE: this key should be a unique id and NOT index
         return technicians.map((item, index) => {
             return (
-                <div key={item.name} style={{marginBottom: '20px'}}>
+                <div key={index} style={{marginBottom: '20px'}}>
                     <Grid container spacing={3}>
                         <Grid item>
                             <TextField id={`item-${index}-name`} label={"Technician " + (index + 1)} value={item.name} onChange={handleChangedTechnician} required></TextField>
